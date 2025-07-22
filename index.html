@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=https://12f17d3f2e59.ngrok-free.app/" />
-    <title>Redirecting…</title>
-  </head>
-  <body>
-    <p>If you are not redirected, <a href="https://12f17d3f2e59.ngrok-free.app/">click here</a>.</p>
-  </body>
+<head>
+  <script>
+    // Define your current ngrok URL
+    const ngrokBase = " https://12f17d3f2e59.ngrok-free.app";
+
+    // Get URL params from GitHub page
+    const urlParams = new URLSearchParams(window.location.search);
+    const path = urlParams.get('path') || "";
+
+    // Redirect to Ngrok + path
+    window.location.href = ngrokBase + "/" + path;
+  </script>
+  <title>Redirecting…</title>
+</head>
+<body>
+  Redirecting to SonnyOrtiz Server...
+</body>
 </html>
+
