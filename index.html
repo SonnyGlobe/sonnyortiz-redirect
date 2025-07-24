@@ -3,16 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <title>Redirecting…</title>
-    <meta http-equiv="refresh" content="0; url=https://6cdfc1f3830c.ngrok-free.app" />
-  </head>
-  <body>
-    <p>If you are not redirected, <a href="https://6cdfc1f3830c.ngrok-free.app">click here</a>.</p>
-
     <script>
-      // Optional: Forward paths like /chat, /demo to same ngrok
-      const path = window.location.pathname;
-      const url = "https://6cdfc1f3830c.ngrok-free.app" + path + window.location.search + window.location.hash;
+      const NGROK_BASE = "https://e255e43d44a2.ngrok-free.app";
+
+      let path = window.location.pathname.replace("/sonnyortiz-redirect", "").trim();
+
+      if (path === "" || path === "/") {
+        path = "/start.html";
+      }
+
+      const url = NGROK_BASE + path + window.location.search + window.location.hash;
+
       window.location.replace(url);
     </script>
+  </head>
+  <body>
+    <p>Redirecting to your server...</p>
   </body>
 </html>
