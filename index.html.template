@@ -3,16 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <title>Redirecting…</title>
-    <meta http-equiv="refresh" content="0; url={{NGROK_URL}}" />
-  </head>
-  <body>
-    <p>If you are not redirected, <a href="{{NGROK_URL}}">click here</a>.</p>
-
     <script>
-      // Optional: Forward paths like /chat, /demo to same ngrok
-      const path = window.location.pathname;
-      const url = "{{NGROK_URL}}" + path + window.location.search + window.location.hash;
+      const NGROK_BASE = "{{NGROK_URL}}";
+
+      let path = window.location.pathname.replace("/sonnyortiz-redirect", "").trim();
+
+      if (path === "" || path === "/") {
+        path = "/start.html";
+      }
+
+      const url = NGROK_BASE + path + window.location.search + window.location.hash;
+
       window.location.replace(url);
     </script>
+  </head>
+  <body>
+    <p>Redirecting to your server...</p>
   </body>
 </html>

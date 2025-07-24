@@ -1,0 +1,58 @@
+
+
+
+'-------------------------------------------------------------------
+Run Server Offline & Content 
+
+Cd "C:\sonnyortiz-server"
+node server.js
+
+'-------------------------------------------------------------------
+Run Server Online - 
+
+cd "C:\ngrok-v3-stable-windows"
+ngrok http 3000
+'-------------------------------------------------------------------
+Run GitHub international Fixed URL
+
+cd "C:\sonnyortiz-redirect"
+node update-index.js
+git add index.html
+git commit -m "Update index.html with new ngrok URL"
+git push origin main
+
+
+or Run Batch
+update-and-push.bat
+
+
+----------------------------------------------------------
+------------- Trouble Shoot ------------------
+
+1. Reset any broken rebase state:
+Run this to clean up any stuck Git state:
+
+git rebase --abort
+
+git checkout main
+
+git add index.html
+git commit -m "Resolve index.html update"
+git checkout main
+
+
+ 2. Now re-run the good flow: - working for me
+
+
+node update-index.js
+git add index.html
+git commit -m "Force update index.html"
+git push origin main --force
+
+
+
+
+
+
+
+

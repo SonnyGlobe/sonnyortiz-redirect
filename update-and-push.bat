@@ -1,24 +1,28 @@
 @echo off
-cd /d C:\sonnyortiz-redirect
+setlocal enabledelayedexpansion
 
-REM Run node script
+echo [1/4] Updating index.html from Ngrok URL...
 node update-index.js
 
-REM Stage updated files
-git add index.html update-and-push.bat
-
-REM Commit if there’s anything staged
-git diff --cached --quiet || git commit -m "Auto-update Ngrok URL"
-
-REM Pull latest from origin
-git pull --rebase
 IF %ERRORLEVEL% NEQ 0 (
-    echo ❌ Rebase failed. Please resolve manually.
+    echo ❌ update-index.js failed. Aborting.
     pause
-    exit /b %ERRORLEVEL%
+    exit /b 1
 )
 
-REM Push changes
+echo.
+echo [2/4] Staging updated index.html...
+git add index.html
+
+echo.
+echo [3/4] Committing changes...
+FOR /F %%i IN ('powershell -command "Get-Date -Format yyyy-MM-dd_HH:mm:ss"') DO SET timestamp=%%i
+git commit -m "🔁 Auto-update Ngrok URL - %timestamp%"
+
+echo.
+echo [4/4] Pushing to GitHub...
 git push origin main
 
+echo.
+echo ✅ Done! GitHub index.html should now redirect to your latest Ngrok tunnel.
 pause
