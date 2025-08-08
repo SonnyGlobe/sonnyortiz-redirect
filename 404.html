@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting…</title>
+    <script>
+      const NGROK_BASE = "https://2a1baf77e706.ngrok-free.app";
+
+      // Extract only the path after the GitHub Pages repo root
+      let path = window.location.pathname.replace("/sonnyortiz-redirect", "").trim();
+
+      if (!path || path === "/") {
+        path = "/start.html";
+      }
+
+      const url = NGROK_BASE + path + window.location.search + window.location.hash;
+      window.location.replace(url);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to your server...</p>
+  </body>
+</html>
